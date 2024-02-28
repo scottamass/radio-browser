@@ -3,31 +3,30 @@ import './App.css';
 
 function App() {
   const [audioSource, setAudioSource] = useState("https://radio.canstream.co.uk:9037/live.mp3");
+  const [stationTitle, setStationTitle] = useState("Ujima");
   const [playerKey, setPlayerKey] = useState(1);
 
-  const handleRadio1Click = () => {
-    setAudioSource("https://radio.canstream.co.uk:9037/live.mp3");
+  const handleRadioClick = (newSource, newTitle) => {
+    setAudioSource(newSource);
     setPlayerKey((prevKey) => prevKey + 1);
-  };
-
-  const handleRadio2Click = () => {
-    setAudioSource("https://s42.myradiostream.com/:29400/listen.mp3?_=372338?nocache=1709122376");
-    setPlayerKey((prevKey) => prevKey + 1);
+    setStationTitle(newTitle);
   };
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>Radio Player</h1>
+        <h2>{stationTitle}</h2>
 
-        <audio controls key={playerKey}>
+        <audio controls key={playerKey} autoPlay>
           <source src={audioSource} type="audio/mpeg"></source>
           Your browser does not support the audio element.
         </audio>
 
         <div>
-          <button onClick={handleRadio1Click}>Radio 1</button>
-          <button onClick={handleRadio2Click}>Radio 2</button>
+          <button onClick={() => handleRadioClick("https://radio.canstream.co.uk:9037/live.mp3", "Ujima")}>Ujima 98</button>
+          <button onClick={() => handleRadioClick("https://s42.myradiostream.com/:29400/listen.mp3?_=372338?nocache=1709122376", "Thornbury Radio")}>Thornbury Radio</button>
+          <button onClick={() => handleRadioClick("https://ec3.yesstreaming.net:3755/stream", "Lofi Radio")}>Lofi Radio</button>
         </div>
       </header>
     </div>
