@@ -26,7 +26,7 @@ function App() {
 
         <div>
           <button onClick={() => handleRadioClick("https://radio.canstream.co.uk:9037/live.mp3", "Ujima")}>Ujima 98</button>
-          <button onClick={() => handleRadioClick("https://s42.myradiostream.com/:29400/listen.mp3?_=372338?nocache=1709122376", "Thornbury Radio")}>Thornbury Radio</button>
+          <button onClick={() => handleRadioClick("https://s42.myradiostream.com/:29400/listen.mp3", "Thornbury Radio")}>Thornbury Radio</button>
           <button onClick={() => handleRadioClick("https://ec3.yesstreaming.net:3755/stream", "Lofi Radio")}>Lofi Radio</button>
         </div>
       </header>
