@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './App.css';
+import stations from './data/stations';
 
 function App() {
   const [audioSource, setAudioSource] = useState("https://radio.canstream.co.uk:9037/live.mp3");
@@ -25,12 +26,11 @@ function App() {
         </audio>
 
         <div>
-          <button onClick={() => handleRadioClick("https://radio.canstream.co.uk:9037/live.mp3", "Ujima")}>Ujima 98</button>
-          <button onClick={() => handleRadioClick("https://s42.myradiostream.com/:29400/listen.mp3", "Thornbury Radio")}>Thornbury Radio</button>
-          <button onClick={() => handleRadioClick("https://ec3.yesstreaming.net:3755/stream", "Lofi Radio")}>Lofi Radio</button>
-          <button onClick={() => handleRadioClick("https://uksoutha.streaming.broadcast.radio/stream/10690/swindon1055?", "swindon 105.5")}>swindon 105.5</button>
-          <button onClick={() => handleRadioClick("https://media-the.musicradio.com/ClassicFM", "Classic FM")}>classic fm</button>
           
+          {stations.map(item =>(
+ <button onClick={() => handleRadioClick(item.source, item.name)}>{item.name}</button>
+          
+        ))}
         </div>
       </header>
     </div>
