@@ -16,7 +16,7 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Radio Player</h1>
+        <h1>Radio Player📻</h1>
         <h2>{stationTitle}</h2>
 
         <audio controls key={playerKey} autoPlay>
