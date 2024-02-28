@@ -10,6 +10,7 @@ function App() {
     setAudioSource(newSource);
     setPlayerKey((prevKey) => prevKey + 1);
     setStationTitle(newTitle);
+    document.title = `${newTitle}`;
   };
 
   return (
