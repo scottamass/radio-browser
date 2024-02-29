@@ -2,7 +2,7 @@
 
 https://radio-browser-ebon.vercel.app
 
-this is a simple app that plays a selection of online radio stations from around the birstol area, It has sevral features such as rembering last station used via local storage and peristent light dark mode 
+this is a simple app that plays a selection of online radio stations from around the birstol area, It has sevral features such as rembering last station used via local storage and peristent light dark mode . intergrations via supabse are included 
 
 
 ![Alt text](image-1.png)
