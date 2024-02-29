@@ -3,23 +3,41 @@ import './App.css';
 import stations from './data/stations';
 
 function App() {
+  const storedTheme = window.localStorage.getItem('theme') || 'light';
+  const storedStation = window.localStorage.getItem('current-station') || 'Ujima';
+  const storedPlayerKey = parseInt(window.localStorage.getItem('playerKey')) || 1;
+
   const [audioSource, setAudioSource] = useState("https://radio.canstream.co.uk:9037/live.mp3");
-  const [stationTitle, setStationTitle] = useState("Ujima");
-  const [playerKey, setPlayerKey] = useState(1);
-  const [theme, setTheme] = useState('light');
+  const [stationTitle, setStationTitle] = useState(storedStation);
+  const [playerKey, setPlayerKey] = useState(storedPlayerKey);
+  const [theme, setTheme] = useState(storedTheme);
 
   const handleRadioClick = (newSource, newTitle) => {
     setAudioSource(newSource);
     setPlayerKey((prevKey) => prevKey + 1);
     setStationTitle(newTitle);
     document.title = `${newTitle}`;
+    
+    // Store selected station in localStorage
+    localStorage.setItem('current-station', newTitle);
+    localStorage.setItem('playerKey', playerKey);
+    localStorage.setItem('audioSource', newSource);
   };
 
   const handleThemeChange = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
-    localStorage.setItem('theme', newTheme); // Update localStorage
+    localStorage.setItem('theme', newTheme);
   };
+
+  useEffect(() => {
+    // Restore selected station and audio source from localStorage
+    const storedStation = window.localStorage.getItem('current-station') || 'Ujima';
+    const storedAudioSource = window.localStorage.getItem('audioSource') || "https://radio.canstream.co.uk:9037/live.mp3";
+
+    setStationTitle(storedStation);
+    setAudioSource(storedAudioSource);
+  }, []);
 
   useEffect(() => {
     const root = window.document.documentElement;
@@ -37,11 +55,11 @@ function App() {
         setTheme('dark');
       }
     }
-  }, []); 
+  }, []);
 
   return (
     <div className="App" data-theme={theme}>
-          <button onClick={handleThemeChange}>Toggle Theme</button>
+      <button onClick={handleThemeChange}>Toggle Theme</button>
       <header className="App-header">
         <h1>Radio Player📻</h1>
         <h2>{stationTitle}</h2>
@@ -58,7 +76,6 @@ function App() {
             </button>
           ))}
         </div>
-
       </header>
     </div>
   );
