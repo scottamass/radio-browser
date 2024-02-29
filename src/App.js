@@ -1,5 +1,6 @@
 // App.js
 import React, { useState, useEffect } from 'react';
+import { supabase } from './lib/supabaseClient';
 import './App.css';
 import Stationcard from './comps/Stationcard';
 import stations from './data/stations';
@@ -26,7 +27,18 @@ function App() {
     localStorage.setItem('playerKey', playerKey);
     localStorage.setItem('audioSource', newSource);
   };
-
+  function pullStationsFromDb(){
+    supabase
+    .from('stations')
+    .select('*')
+    .then(({data,error})=>{
+      if(!error){
+        
+        console.log(data)
+        
+      }
+    })
+  }
   const handleThemeChange = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -40,6 +52,8 @@ function App() {
 
     setStationTitle(storedStation);
     setAudioSource(storedAudioSource);
+    pullStationsFromDb();
+
   }, []);
 
   useEffect(() => {
