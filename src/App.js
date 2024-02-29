@@ -1,16 +1,16 @@
+// App.js
 import React, { useState, useEffect } from 'react';
 import './App.css';
-import stations from './data/stations';
 import Stationcard from './comps/Stationcard';
-
+import stations from './data/stations';
 
 function App() {
   const storedTheme = window.localStorage.getItem('theme') || 'light';
   const storedStation = window.localStorage.getItem('current-station') || 'Ujima';
+  const storedAudioSource = window.localStorage.getItem('audioSource') || 'https://radio.canstream.co.uk:9037/live.mp3';
   const storedPlayerKey = parseInt(window.localStorage.getItem('playerKey')) || 1;
-  const storedUrl = window.localStorage.getItem('audioSource') || 'https://radio.canstream.co.uk:9037/live.mp3'
 
-  const [audioSource, setAudioSource] = useState(storedUrl);
+  const [audioSource, setAudioSource] = useState(storedAudioSource);
   const [stationTitle, setStationTitle] = useState(storedStation);
   const [playerKey, setPlayerKey] = useState(storedPlayerKey);
   const [theme, setTheme] = useState(storedTheme);
@@ -20,7 +20,7 @@ function App() {
     setPlayerKey((prevKey) => prevKey + 1);
     setStationTitle(newTitle);
     document.title = `${newTitle}`;
-    
+
     // Store selected station in localStorage
     localStorage.setItem('current-station', newTitle);
     localStorage.setItem('playerKey', playerKey);
@@ -36,7 +36,7 @@ function App() {
   useEffect(() => {
     // Restore selected station and audio source from localStorage
     const storedStation = window.localStorage.getItem('current-station') || 'Ujima';
-    const storedAudioSource = window.localStorage.getItem('audioSource') || "https://radio.canstream.co.uk:9037/live.mp3";
+    const storedAudioSource = window.localStorage.getItem('audioSource') || 'https://radio.canstream.co.uk:9037/live.mp3';
 
     setStationTitle(storedStation);
     setAudioSource(storedAudioSource);
@@ -65,34 +65,20 @@ function App() {
       <button onClick={handleThemeChange}>Toggle Theme</button>
       <header className="App-header">
         <h1>Radio Player 📻</h1>
-       
       </header>
       <body>
-      <h2>{stationTitle}</h2>
+        <h2>{stationTitle}</h2>
 
-<audio controls key={playerKey} autoPlay>
-  <source src={audioSource} type="audio/mpeg"></source>
-  Your browser does not support the audio element.
-</audio>
+        <audio controls key={playerKey} autoPlay>
+          <source src={audioSource} type="audio/mpeg"></source>
+          Your browser does not support the audio element.
+        </audio>
 
-<div className='container'>
-  {stations.map(item => (
-    <>
-    <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name}/>
-   
-    {/* <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
-      {item.name}
-    </button> */}
-    
-    </>
-  ))}
-  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
-  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
-  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
-  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
-  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
-
-</div>
+        <div className='container'>
+          {stations.map(item => (
+            <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name} key={item.name} />
+          ))}
+        </div>
       </body>
     </div>
   );
