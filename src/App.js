@@ -16,14 +16,15 @@ function App() {
   };
 
   const handleThemeChange = () => {
-    setTheme((prevTheme) => prevTheme === 'light' ? 'dark' : 'light');
+    const newTheme = theme === 'light' ? 'dark' : 'light';
+    setTheme(newTheme);
+    localStorage.setItem('theme', newTheme); // Update localStorage
   };
 
   useEffect(() => {
     const root = window.document.documentElement;
-    root.classList.remove(theme === 'light' ? 'dark' : 'light');
-    root.classList.add(theme);
-    localStorage.setItem('theme', theme);
+    root.classList.toggle('light', theme === 'light');
+    root.classList.toggle('dark', theme === 'dark');
   }, [theme]);
 
   useEffect(() => {
@@ -36,10 +37,10 @@ function App() {
         setTheme('dark');
       }
     }
-  }, []);
+  }, []); 
 
   return (
-    <div className="App">
+    <div className="App" data-theme={theme}>
       <header className="App-header">
         <h1>Radio Player📻</h1>
         <h2>{stationTitle}</h2>
@@ -50,11 +51,11 @@ function App() {
         </audio>
 
         <div>
-          
-          {stations.map(item =>(
- <button onClick={() => handleRadioClick(item.source, item.name)}>{item.name}</button>
-          
-        ))}
+          {stations.map(item => (
+            <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
+              {item.name}
+            </button>
+          ))}
         </div>
 
         <button onClick={handleThemeChange}>Toggle Theme</button>
