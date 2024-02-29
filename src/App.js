@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import stations from './data/stations';
+import Stationcard from './comps/Stationcard';
+
 
 function App() {
   const storedTheme = window.localStorage.getItem('theme') || 'light';
@@ -72,9 +74,12 @@ function App() {
 
         <div>
           {stations.map(item => (
+            <>
             <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
               {item.name}
             </button>
+            <Stationcard/>
+            </>
           ))}
         </div>
       </header>
