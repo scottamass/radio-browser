@@ -6,8 +6,9 @@ function App() {
   const storedTheme = window.localStorage.getItem('theme') || 'light';
   const storedStation = window.localStorage.getItem('current-station') || 'Ujima';
   const storedPlayerKey = parseInt(window.localStorage.getItem('playerKey')) || 1;
+  const storedUrl = window.localStorage.getItem('audioSource') || 'https://radio.canstream.co.uk:9037/live.mp3'
 
-  const [audioSource, setAudioSource] = useState("https://radio.canstream.co.uk:9037/live.mp3");
+  const [audioSource, setAudioSource] = useState(storedUrl);
   const [stationTitle, setStationTitle] = useState(storedStation);
   const [playerKey, setPlayerKey] = useState(storedPlayerKey);
   const [theme, setTheme] = useState(storedTheme);
