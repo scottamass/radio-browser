@@ -1,9 +1,8 @@
 // App.js
 import React, { useState, useEffect } from 'react';
-import { supabase } from './lib/supabaseClient';
 import './App.css';
 import Stationcard from './comps/Stationcard';
-import stations from './data/stations';
+import { fetchStations } from './lib/supabaseUtils';
 
 function App() {
   const storedTheme = window.localStorage.getItem('theme') || 'light';
@@ -15,6 +14,7 @@ function App() {
   const [stationTitle, setStationTitle] = useState(storedStation);
   const [playerKey, setPlayerKey] = useState(storedPlayerKey);
   const [theme, setTheme] = useState(storedTheme);
+  const [stations, setStations] = useState([]);
 
   const handleRadioClick = (newSource, newTitle) => {
     setAudioSource(newSource);
@@ -27,18 +27,7 @@ function App() {
     localStorage.setItem('playerKey', playerKey);
     localStorage.setItem('audioSource', newSource);
   };
-  function pullStationsFromDb(){
-    supabase
-    .from('stations')
-    .select('*')
-    .then(({data,error})=>{
-      if(!error){
-        
-        console.log(data)
-        
-      }
-    })
-  }
+
   const handleThemeChange = () => {
     const newTheme = theme === 'light' ? 'dark' : 'light';
     setTheme(newTheme);
@@ -52,8 +41,16 @@ function App() {
 
     setStationTitle(storedStation);
     setAudioSource(storedAudioSource);
-    pullStationsFromDb();
 
+    // Fetch stations from Supabase using the fetchStations function
+    fetchStations()
+      .then(data => {
+        setStations(data);
+        console.log(data)
+      })
+      .catch(error => {
+        console.error('Error fetching stations:', error.message);
+      });
   }, []);
 
   useEffect(() => {
@@ -90,7 +87,10 @@ function App() {
 
         <div className='container'>
           {stations.map(item => (
-            <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name} key={item.name} />
+            <>
+            
+            <Stationcard onClick={() => handleRadioClick(item.station_url, item.station_name)} name={item.station_name} key={item.station_name} />
+</>          
           ))}
         </div>
       </body>
