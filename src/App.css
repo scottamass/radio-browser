@@ -13,6 +13,9 @@
 }
 
 .App {
+  min-height: 100vh;
+
+  overflow: hidden;
   text-align: center;
   background-color: var(--background);
   color: var(--text-primary);
@@ -30,7 +33,7 @@
 }
 
 .App-header {
-  min-height: 100vh;
+  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -40,6 +43,32 @@
 
 .App-link {
   color: var(--text-secondary);
+}
+.container {
+  overflow: scroll;
+  max-height: calc(100vh - 120px); /* Adjust the max height as needed */
+  padding-left: 5em;
+  padding-right: 5em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.card {
+  width: 18rem;
+  /* Add shadows to create the "card" effect */
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  position: relative;
+display: flex;
+flex-direction: column;
+min-width: 0;
+word-wrap: break-word;
+background-color: ;
+background-clip: border-box;
+border: 1px solid rgba(0,0,0,.125);
+border-radius: .25rem;
+margin-bottom: 1em;
+text-align: left;
 }
 
 @keyframes App-logo-spin {

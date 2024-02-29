@@ -65,26 +65,35 @@ function App() {
       <button onClick={handleThemeChange}>Toggle Theme</button>
       <header className="App-header">
         <h1>Radio Player 📻</h1>
-        <h2>{stationTitle}</h2>
-
-        <audio controls key={playerKey} autoPlay>
-          <source src={audioSource} type="audio/mpeg"></source>
-          Your browser does not support the audio element.
-        </audio>
-
-        <div>
-          {stations.map(item => (
-            <>
-            <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name}/>
-           
-            {/* <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
-              {item.name}
-            </button> */}
-            
-            </>
-          ))}
-        </div>
+       
       </header>
+      <body>
+      <h2>{stationTitle}</h2>
+
+<audio controls key={playerKey} autoPlay>
+  <source src={audioSource} type="audio/mpeg"></source>
+  Your browser does not support the audio element.
+</audio>
+
+<div className='container'>
+  {stations.map(item => (
+    <>
+    <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name}/>
+   
+    {/* <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
+      {item.name}
+    </button> */}
+    
+    </>
+  ))}
+  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
+  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
+  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
+  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
+  <Stationcard onClick={() => handleRadioClick('test', 'test')} name={'test'}/>
+
+</div>
+      </body>
     </div>
   );
 }

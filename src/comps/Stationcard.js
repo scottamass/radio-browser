@@ -4,7 +4,7 @@ function Stationcard({onClick,name}) {
 
    
       return (
-    <div className='card-body' onClick={onClick}>
+    <div className='card' onClick={onClick}>
        <h2>{name}</h2>
     </div>
          
