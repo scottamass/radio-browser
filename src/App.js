@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './App.css';
 import stations from './data/stations';
 
@@ -6,6 +6,7 @@ function App() {
   const [audioSource, setAudioSource] = useState("https://radio.canstream.co.uk:9037/live.mp3");
   const [stationTitle, setStationTitle] = useState("Ujima");
   const [playerKey, setPlayerKey] = useState(1);
+  const [theme, setTheme] = useState('light');
 
   const handleRadioClick = (newSource, newTitle) => {
     setAudioSource(newSource);
@@ -13,6 +14,29 @@ function App() {
     setStationTitle(newTitle);
     document.title = `${newTitle}`;
   };
+
+  const handleThemeChange = () => {
+    setTheme((prevTheme) => prevTheme === 'light' ? 'dark' : 'light');
+  };
+
+  useEffect(() => {
+    const root = window.document.documentElement;
+    root.classList.remove(theme === 'light' ? 'dark' : 'light');
+    root.classList.add(theme);
+    localStorage.setItem('theme', theme);
+  }, [theme]);
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('theme');
+    if (localTheme) {
+      setTheme(localTheme);
+    } else {
+      const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+      if (mediaQuery.matches) {
+        setTheme('dark');
+      }
+    }
+  }, []);
 
   return (
     <div className="App">
@@ -32,6 +56,8 @@ function App() {
           
         ))}
         </div>
+
+        <button onClick={handleThemeChange}>Toggle Theme</button>
       </header>
     </div>
   );
