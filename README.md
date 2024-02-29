@@ -25,3 +25,5 @@ there is plans to add more stations and streamline the code to make it more dyna
 - move station list to a database 
 - add user account and favorite mode 
 - remember last station in local storage 
+- major Ui overhall 
+    -   it is currently using the standard create react app style and theme  
