@@ -41,6 +41,7 @@ function App() {
 
   return (
     <div className="App" data-theme={theme}>
+          <button onClick={handleThemeChange}>Toggle Theme</button>
       <header className="App-header">
         <h1>Radio Player📻</h1>
         <h2>{stationTitle}</h2>
@@ -58,7 +59,6 @@ function App() {
           ))}
         </div>
 
-        <button onClick={handleThemeChange}>Toggle Theme</button>
       </header>
     </div>
   );
