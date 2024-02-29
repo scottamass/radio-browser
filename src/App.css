@@ -1,12 +1,12 @@
 :root {
-  --background: white;
+  --background: rgb(108, 179, 254);
   --text-primary: black;
   --text-secondary: royalblue;
   --accent: purple;
 }
 
 [data-theme='dark'] {
-  --background: black;
+  --background: rgb(10, 9, 32);
   --text-primary: white;
   --text-secondary: grey;
   --accent: darkred;

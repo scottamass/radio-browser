@@ -1,11 +1,14 @@
 import React from 'react';
 
-function Stationcard() {
+function Stationcard({onClick,name}) {
 
    
       return (
-    
-         <h1>Card</h1>
+    <div className='card-body' onClick={onClick}>
+       <h2>{name}</h2>
+    </div>
+         
+
     
       )
       

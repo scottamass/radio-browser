@@ -64,7 +64,7 @@ function App() {
     <div className="App" data-theme={theme}>
       <button onClick={handleThemeChange}>Toggle Theme</button>
       <header className="App-header">
-        <h1>Radio Player📻</h1>
+        <h1>Radio Player 📻</h1>
         <h2>{stationTitle}</h2>
 
         <audio controls key={playerKey} autoPlay>
@@ -75,10 +75,12 @@ function App() {
         <div>
           {stations.map(item => (
             <>
-            <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
+            <Stationcard onClick={() => handleRadioClick(item.source, item.name)} name={item.name}/>
+           
+            {/* <button key={item.name} onClick={() => handleRadioClick(item.source, item.name)}>
               {item.name}
-            </button>
-            <Stationcard/>
+            </button> */}
+            
             </>
           ))}
         </div>
