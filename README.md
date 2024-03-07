@@ -20,10 +20,11 @@ there is plans to add more stations and streamline the code to make it more dyna
 - Added light / Dark Mode 
     -   Plans to add system pref themeing too 
 - remember last station in local storage 
+- moved station list to a database (Supabase)
 
 ## Planed Changes 
 
-- move station list to a database 
+
 - add user account and favorite mode 
 - major Ui overhall 
     -   it is currently using the standard create react app style and theme  
