@@ -9,7 +9,7 @@
 
 [data-theme='dark'] {
   --background: rgb(10, 9, 32);
-  --backgroundSecondary: rgb(75, 161, 253);
+  --backgroundSecondary: rgba(10, 24, 39, 0.851);
   --text-primary: white;
   --text-secondary: grey;
   --accent: darkred;
